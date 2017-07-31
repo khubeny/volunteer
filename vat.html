@@ -1,80 +1,215 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta charset="utf-8">   <!--just added -->  
+  
   <link rel="stylesheet" href="vat.css"></link>
+<link rel="stylesheet" href="login.css"></link>
+<title> I Volunteer As Tribute </title>
 </head>
 <body>
 
-<div class="background"></div>
+<!-- <div class="background"></div> --> <!--You don't really need this line..? -->
+
 <div id = "icon-bar" onclick = "closeaddevent()" class="icon-bar">
 
-    <form>
+<!-- Search bar input -->
+  <form>
       <input type="text" class="search" placeholder="Type to search for an event">
-    </form>
-
-
+ </form>
+<!-- Written words on icon bar: "Add an event" -->
     <div class="add-e">
       <p>Add an event</p>
     </div>
+
+    <div class="loginbutton">
+      <img src="signUp.png" alt="Sign up" style="width: 35px;height: 35px; padding-right: 175px; margin-top: 10px;"></img>
+    </div>
+
+<!--Keep in just login button?? Sorta redundant... :/ -->
+    <div class="loginbutton">
+      <img src="signIn.png" alt="Sign In" style="width: 35px;height: 35px; padding-right: 100px; margin-top: 10px;"></img>
+    </div>
+ 
+<div class="loginbutton">
+      <img src="aboutUs.png" alt="About us" style="width: 35px;height: 35px; padding-right: 250px; margin-top: 10px;"></img>
+    </div>
+
+
+   <!-- login button in icon bar -->
+    <div class="loginbutton">
+      <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+    </div>
 </div>
 
+<!-- add login popup -->
+<div id="id01" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <button type="submit">Login</button>
+      <!-- make type button to make regular button -->
+      <button class="signupbutton" type="button" onclick="signUpScreen()">Sign Up</button>
+      <input type="checkbox" checked="checked"> Remember me
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+<!-- added sign up pop up -->
+<div id="su" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label><b>Name</b></label>
+      <input type="text" placeholder="Enter Your Name" name="name" required>
+
+      <label><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label><b>Email</b></label>
+      <input type="email" placeholder="Enter Your Email" name="email" required>
+
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" placeholder="Confirm Password" name="psw2" required>
+
+      <button type="submit">Finish</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+<!-- end of my added code -->
+
+
+<!-- Add event image and functions of that "button" -->
 <div id="plus" class="add-e-icon">
   <img src="addeventicon.png" onclick="addevent()"
   style="width:30px;height:30px;padding-left:5px;padding:5px"></img>
-</div>
+</div> 
 
 <div id="dropdown" class="dropdown">
+
+  <h3 style="text-align:center;color:#696969">Create an event</h3>
+
+<!-- Note to self: if the person inserts data and leaves the create event dropdown, the info is still there when the dropdown is opened once again
+Make sure to delete all written information each time the event dropdown is pressed or after the person submits! -->
+
+<!-- Fill event's name -->
   <form>
     <input type="text" class="info" placeholder="Event Name" style= "margin-top: 10px;
       margin-bottom: 10px;">
   </form>
 
-  <form>
+  <!-- date picker doesn't work on safari idk if i have an old version tho -->
+    <label><b>Event Time and Date Start</b></label>
+    <input type="datetime-local" class="info" style="margin-top: 10px;
+      margin-bottom: 10px;">
+<!-- when event ends -->
+    <label><b>Event Time and Date End</b></label>
+    <input type="datetime-local" class="info"  style="margin-top: 10px;
+      margin-bottom: 10px;">
+
+<!-- Fill out event's date or dates... Make extension for event that spans multiple days -->
+
+ <!--  <form>
     <input type="text" class="info" placeholder="Event Date: MM/DD/YY" style="margin-top: 10px;
       margin-bottom: 10px;">
   </form>
-
+Fill out event's time range
   <form>
     <input type="text" class="info" placeholder="Event Time (ex. 3:30pm-5:00pm)" style="margin-top: 10px;
       margin-bottom: 10px;">
-  </form>
+  </form> -->
 
-  <form>
-    <input type="text" class="location" placeholder="Address">
-  </form>
+<!-- Fill out event's location -->
 
-  <form>
-    <input type="text" class="description" placeholder="Event Description" style="margin-top: 10px;
-      margin-bottom: 10px;">
-  </form>
 
-  <form>
-    <input type="text" class="description" placeholder="Enter hashtags for users to find your event. (ex. #animals)" style="margin-top: 10px;
-      margin-bottom: 10px;">
+<!--   <form>
+    <input id="address" type="text" class="location" placeholder="Address"> 
   </form>
+  --> 
+<input id="address" type="text" class="location" placeholder="Address">
 
+<!-- Fill out event coordinator's contact information 
   <form>
+    <input type="text" class="contact" placeholder="Contact Information and Resources">
+  </form>  -->
+
+  <!-- Fill out event coordinator's contact information -->
+ <label><b>Contact Info</b></label>
     <input type="text" class="contact" placeholder="Contact Information">
+
+<!-- Brief description of the event being created -->
+  <label><b>Event Description</b></label>
+
+  <form>
+    <textarea type="text" class="description" placeholder="Event Description" maxlength="350" style="margin-top: 10px;
+      margin-bottom: 10px;"></textarea>
   </form>
+
+<!-- Used to write certain tags that a volunteer can search for -->
+  <label style="text-align: center;"><b>Event Tags</b></label>
+  <form>
+    <textarea type="text" class="description" placeholder="Enter hashtags for users to find your event. (ex. #animals)" style="margin-top: 10px;
+      margin-bottom: 10px;"></textarea>
+  </form>
+
+<!--submit button later code it for multiple events -->
+<input id= "submit" type="button" style="display: block;margin: 0 auto" value="Submit">
 
 </div>
 
-<div id="googleMap" class="googleMap" style="width:100%;height:89vh;overflow:auto"></div>
+<div id="googleMap" class="googleMap" style="width:100%;height:90vh;overflow:auto"></div>
 
 <script src = "vat.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC08DCA_37I1AeSxnIi3_jXvxxqWYWHHVw&callback=myMap"></script>
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC08DCA_37I1AeSxnIi3_jXvxxqWYWHHVw&callback=initMap">
+    </script>
+</body>
 
 
+<!--About us html coding -->
+<body style="background-image: url(aboutUsBack.jpeg)">
+<div id="imageBox" >
+<h1 style="margin-top: 15vh; font-family: impact; font-variant: small-caps; text-align: center;"> About Us </h1>
 
-
-
-
-
-
-
-
-
+<p style="font-family: sans-serif; margin: 20px;"> Who are we? We are a close-knit group of weirdos who love to code and be the strangest and most creative we can be. We were brought together through
+the Girls Who Code Summer Immersion Program and together we developed this project in order to help others find volunteer opportunities. This is 
+extremely helpful for teens looking for volunteer hours, adults with free time and a desire to contribute to the community and really all who 
+want something to do that will benefit the people around them. </p>
+</div>
+<div id="imageBox" style="background-image: url("aboutUsBack.jpeg")">
+  <h1> idek </h1>
+</div>
 
 </body>
+
 </html>
+
