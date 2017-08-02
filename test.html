@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <!-- <form onload="searchxml()"> -->
+  <head>
+    <script>
+      function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      alert(this.status);
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("demo").innerHTML =
+        this.responseText;
+        alert(this.responseText);
+      }
+    };
+    xhttp.open("GET", "search.php", true);
+    xhttp.send();
+  }
+    </script>
+  </head>
+  <body>
+
+    // <!-- <form action="search.php" method="GET" id="searchform">
+    //   <input type="text" name='q' class="search" placeholder="Type to search for an event">
+    //   <input type="submit" name="submit" value="search" style="right:0; position: absolute;">
+    // </form> -->
+
+
+
+  <form >
+    <input type="text" id="search" placeholder="Type to search for an event" /> <br/>
+    <!-- <input type="submit" style="position: relative; margin-left: 400px;" > -->
+    <button onclick="loadDoc()" style="position: relative; margin-left: 500px;"> test </button>
+  </form>
+  <div id="underSearch"/>sdigbskdjfbv</div>
+</body>
+</html>
